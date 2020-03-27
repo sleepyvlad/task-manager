@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class TaskManager1585224241732 implements MigrationInterface {
-  public async up(queryRunner: QueryRunner): Promise<any> {
-    queryRunner.createTable(new Table({
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createTable(new Table({
         name: "contents",
-        columns:[
+        columns: [
             {
                 name: "id",
                 type: "int",
@@ -38,5 +38,7 @@ export class TaskManager1585224241732 implements MigrationInterface {
     }));
   }
 
-  public async down(queryRunner: QueryRunner): Promise<any> {}
+  public async down(queryRunner: QueryRunner): Promise<any> {
+      await queryRunner.dropTable("contents");
+  }
 }
